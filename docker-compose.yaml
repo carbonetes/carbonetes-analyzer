@@ -1,0 +1,21 @@
+version: '3'
+
+networks:
+  app-network:
+    driver: bridge
+
+services:
+  carbohelm:
+    image: carbo-helm
+    networks:
+      - app-network
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - CARBONETES_USERNAME=admin@hoolisoftware.com
+      - CARBONETES_PASSWORD=!Carbonetes99
+      - DEBUG=true
+    ports:
+      - 3000:3000
+    
