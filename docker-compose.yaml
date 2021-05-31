@@ -11,11 +11,8 @@ services:
       - app-network
     build:
       context: .
-      dockerfile: Dockerfile
-    environment:
-      - CARBONETES_USERNAME=admin@hoolisoftware.com
-      - CARBONETES_PASSWORD=!Carbonetes99
-      - DEBUG=true
+      dockerfile: dockerfile
+    env_file: .env
     ports:
       - 3000:3000
     

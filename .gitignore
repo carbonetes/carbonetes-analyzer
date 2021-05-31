@@ -106,3 +106,4 @@ dist
 .env
 
 docker-release
+docker-compose.yaml
