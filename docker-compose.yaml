@@ -7,12 +7,12 @@ networks:
 services:
   carbohelm:
     image: carbo-helm
+    env_file: .env
     networks:
       - app-network
     build:
       context: .
       dockerfile: dockerfile
-    env_file: .env
     ports:
       - 3000:3000
     
