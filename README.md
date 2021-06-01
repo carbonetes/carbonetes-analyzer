@@ -9,23 +9,35 @@ The Carbonetes Analyzer is created specifically, to used as Carbonetes Helm Char
 **Carbonetes Analyzer** is just an API that can be called within the cluster to execute an image security analysis. You can install `Carbonetes Analyzer` using [helm](https://helm.sh/docs/intro/install/):
 
 ```sh
-    $ helm repo add carbonetes (url)
-    $ helm install carbonetes-analyzer carbonetes/carbonetes-analyzer
+    $ helm repo add carbonetes https://carbonetes.github.io/carbonetes-helm-chart
+    $ helm install carbonetes-analyzer carbonetes/carbonetes-analyzer --set carbonetesCreds.username="username@email.com" --set carbonetesCreds.password="mypassword"
 ```
 
-## Workloads
+### Via custom values.yaml
 
-- **username**: The account username in Carbonetes
-- **password**: The account password in Carbonetes
-- **registryUri**: Registry Uri (Added in Carbonetes Web Application)
-- **repoImageTag**: The image to be scanned
-- **output**: Output type (JSON or YAML)
+```sh
+    $ helm install carbonetes-analyzer -f carbonetes-creds.yaml carbonetes/carbonetes-analyzer
+```
+
+> **carbonetes-creds.yaml** must include the following values:
+
+```yaml
+    carbonetesCredentials:
+        username: "username@email.com"
+        password: "mypassword"
+```
 
 ## Pre-requisites
 
 Carbonetes Analyzer requires a valid **Carbonetes credentials** `(email and password)`. You also need to setup the registries that contains the images to be scanned.
 
 - Doesn't have any credentials yet? [Register now](https://carbonetes.com).
+
+## Workloads
+
+- **registryUri**: Registry Uri (Added in [Carbonetes Web Application](https://console.carbonetes.com))
+- **repoImageTag**: The image to be scanned
+- **output**: Output type (JSON or YAML) ***optional `by-default: json`***
 
 ## Outputs
 

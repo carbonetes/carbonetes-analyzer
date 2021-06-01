@@ -111,43 +111,53 @@ async function runAnalysis(req: express.Request, res: express.Response) {
         timeout : 500,
         policyBundleUUID : ''
     }).then(response => {
-        analysisCheckerData = response.data;
+        if (response.data !== undefined) {
+            analysisCheckerData = response.data;
 
-        console.log("Getting the results of the analysis...");
-        ///////////////////////////////
-        // Getting the results
-        ///////////////////////////////
-        request.getAnalysisResult({
-            ...analysisCheckerData
-        }).then(response => {
-            analysisResults = response.data;
-
+            console.log("Getting the results of the analysis...");
             ///////////////////////////////
-            // Getting the output type
+            // Getting the results
             ///////////////////////////////
-            if (output == "yaml" || output == "YAML") {
-                analysisResults = YAML.stringify(analysisResults);
-                output = "YAML";
-            } else {
-                output = "JSON";
-            }
-
-            console.log(Common.SUCCESS                      +
-                        repoImageTag                        +
-                        " has been analyzed successfully!"  +
-                        Common.NEXTLINE                     +
-                        "REGISTRY URI: "                    +
-                        registryUri                         +
-                        Common.NEXTLINE                     +
-                        "OUTPUT TYPE: "                     +
-                        output);
-
-            return res.status(200).send(analysisResults);
-        }).catch(error => {
-            analysisResults = error.respose.data;
-            console.log(Common.ERROR + analysisResults);
-            return res.send(Common.ERROR + analysisResults);
-        });
+            request.getAnalysisResult({
+                ...analysisCheckerData
+            }).then(response => {
+                if (response.data !== undefined) {
+                    analysisResults = response.data;
+                    
+                    ///////////////////////////////
+                    // Getting the output type
+                    ///////////////////////////////
+                    if (output == "yaml" || output == "YAML") {
+                        analysisResults = YAML.stringify(analysisResults);
+                        output = "YAML";
+                    } else {
+                        output = "JSON";
+                    }
+        
+                    console.log(Common.SUCCESS                      +
+                                repoImageTag                        +
+                                " has been analyzed successfully!"  +
+                                Common.NEXTLINE                     +
+                                "REGISTRY URI: "                    +
+                                registryUri                         +
+                                Common.NEXTLINE                     +
+                                "OUTPUT TYPE: "                     +
+                                output);
+        
+                    return res.status(200).send(analysisResults);
+                } else {
+                    console.log("There's an error while sending the request.");
+                    res.send("There's an error while sending the request.");
+                }
+            }).catch(error => {
+                analysisResults = error.respose.data;
+                console.log(Common.ERROR + analysisResults);
+                return res.send(Common.ERROR + analysisResults);
+            });
+        } else {
+            console.log("There's an error while sending request.");
+            return res.send("There's an error while sending the request.");
+        }
     }).catch(error => {
         analysisCheckerData = error.response.data;
         console.log(Common.ERROR + analysisCheckerData);
