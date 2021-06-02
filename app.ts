@@ -41,7 +41,7 @@ const loggerOptions: expressWinston.LoggerOptions = {
     ),
 };
 
-if (!process.env.DEBUG) {
+if (process.env.DEBUG === "false") {
     loggerOptions.meta = false; // when not debugging, log requests as one-liners
 }
 

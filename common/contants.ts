@@ -42,10 +42,7 @@ export enum Common {
     ANALYSIS_API         =   "https://api.carbonetes.com/api/v1/analysis/analyze",
     RESULTS_API          =   "https://api.carbonetes.com/api/v1/analysis/get-result",
     NOTES                =   "Get the application URL by running these commands:" +
-                             "\nexport POD_NAME=$(kubectl get pods --namespace {{ .Release.Namespace }} -l \"app.kubernetes.io/name={{ include \"carbonetes-helm.name\" . }},app.kubernetes.io/instance={{ .Release.Name }}\" -o jsonpath=\"{.items[0].metadata.name}\")" +
-                             "\nexport CONTAINER_PORT=$(kubectl get pod --namespace {{ .Release.Namespace }} $POD_NAME -o jsonpath=\"{.spec.containers[0].ports[0].containerPort}\")" +
-                             "\nVisit http://127.0.0.1:3000 to use your application." +
-                             "\nkubectl --namespace {{ .Release.Namespace }} port-forward $POD_NAME 3000:$CONTAINER_PORT",
+                             "\nkubectl --namespace <RELEASE-NAMESPACE> port-forward <POD_NAME> 3000:3000",
     NEXTLINE             =   "\n",
     TAB                  =   "\t",
 }
