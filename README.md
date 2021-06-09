@@ -1,5 +1,7 @@
 # Carbonetes Analyzer
 
+[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/carbonetes-analyzer)](https://artifacthub.io/packages/search?repo=carbonetes-analyzer)
+
 The Carbonetes Analyzer is created specifically, to used as Carbonetes Helm Chart.
 
 [Helm](https://helm.sh/) is a package manager for Kubernetes. It helps deploying applications easily in a cluster. Helm uses [Charts](https://helm.sh/docs/topics/charts/) as its packaging format. A chart is a collection of Kubernetes manifest files that can deploy a simple or complex applications.
