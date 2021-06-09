@@ -2,31 +2,31 @@
 
 [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/carbonetes-analyzer)](https://artifacthub.io/packages/search?repo=carbonetes-analyzer)
 
-The Carbonetes Analyzer is created specifically, to used as Carbonetes Helm Chart.
+The Carbonetes Analyzer is created specifically, to function as Carbonetes Helm Chart.
 
 [Helm](https://helm.sh/) is a package manager for Kubernetes. It helps deploying applications easily in a cluster. Helm uses [Charts](https://helm.sh/docs/topics/charts/) as its packaging format. A chart is a collection of Kubernetes manifest files that can deploy a simple or complex applications.
 
 ## Usage
 
-**Carbonetes Analyzer** is just an API that can be called within the cluster to execute an image security analysis. You can install `Carbonetes Analyzer` using [helm](https://helm.sh/docs/intro/install/):
+**Carbonetes Analyzer** is just an API that can be called within the cluster to execute a container security analysis. You can install `Carbonetes Analyzer` using [helm](https://helm.sh/docs/intro/install/):
 
 ```sh
-    $ helm repo add carbonetes https://carbonetes.github.io/carbonetes-helm-chart
-    $ helm install carbonetes-analyzer carbonetes/carbonetes-analyzer --set carbonetesCreds.username="username@email.com" --set carbonetesCreds.password="mypassword"
+$ helm repo add carbonetes https://carbonetes.github.io/carbonetes-helm-chart
+$ helm install carbonetes-analyzer carbonetes/carbonetes-analyzer --set carbonetesCreds.username="YOUR_USERNAME" --set carbonetesCreds.password="YOUR_PASSWORD"
 ```
 
-### Via custom values.yaml
+### Via custom carbonetes-creds.yaml
 
 ```sh
-    $ helm install carbonetes-analyzer -f carbonetes-creds.yaml carbonetes/carbonetes-analyzer
+$ helm install carbonetes-analyzer -f carbonetes-creds.yaml carbonetes/carbonetes-analyzer
 ```
 
 > **carbonetes-creds.yaml** must include the following values:
 
 ```yaml
-    carbonetesCredentials:
-        username: "username@email.com"
-        password: "mypassword"
+carbonetesCredentials:
+    username: "YOUR_USERNAME"
+    password: "YOUR_PASSWORD"
 ```
 
 ## Pre-requisites
@@ -56,11 +56,11 @@ Carbonetes Analyzer requires a valid **Carbonetes credentials** `(email and pass
 | Final Action                 | Recommends if you need to fix all the known vulnerabilities of the scanned image. |
 
 ## Support
-To help with the developers, or have an issue or feature request, please contact: [eng@carbonetes.com](eng@carbonetes.com)
+To help with this helm chart, or have an issue or feature request, please contact: [eng@carbonetes.com](eng@carbonetes.com)
 
 If reporting an issue, please include:
 
-* the version of the image
+* the version of the helm chart
 * relevant logs and error messages
 * steps to reproduce
 
