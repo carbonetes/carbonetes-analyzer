@@ -2,7 +2,7 @@
 
 [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/carbonetes-analyzer)](https://artifacthub.io/packages/search?repo=carbonetes-analyzer)
 
-The Carbonetes Analyzer is created specifically, to function as Carbonetes Helm Chart.
+The Carbonetes Analyzer is created specifically, to function as Carbonetes Helm Chart and recently added as Operator.
 
 [Helm](https://helm.sh/) is a package manager for Kubernetes. It helps deploying applications easily in a cluster. Helm uses [Charts](https://helm.sh/docs/topics/charts/) as its packaging format. A chart is a collection of Kubernetes manifest files that can deploy a simple or complex applications.
 
@@ -27,6 +27,16 @@ $ helm install carbonetes-analyzer -f carbonetes-creds.yaml carbonetes/carbonete
 carbonetesCredentials:
     username: "YOUR_USERNAME"
     password: "YOUR_PASSWORD"
+```
+
+
+## Carbonetes Analyzer as an Operator
+
+You can also deployed instance of `Carbonetes Analyzer` using [Carbonetes Operator](https://operatorhub.io/operator/carbonetes-operator) available in Operator Hub:
+## Pre-requisites for Carbonetes Operator
+```sh
+kubectl create namespace carbonetes-operator
+kubectl create secret generic -n carbonetes-operator carbonetes-secrets --from-literal=username=${CARBONETES_USERNAME}--from-literal=password=${CARBONETES_PASSWORD}
 ```
 
 ## Pre-requisites
